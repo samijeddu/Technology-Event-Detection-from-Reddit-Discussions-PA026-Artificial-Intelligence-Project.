@@ -1,0 +1,4 @@
+run_mode,dataset,input_type,scanned_posts,kept_posts,cleaned_posts,embeddings_shape,umap_shape,clusters,noise_points,noise_ratio,notes
+smoke_zst_feb_2026,Feb 2026,raw .zst,1731207,5000,1980,"(1980, 384)",,3,,,End-to-end smoke test from RS_2026-02.zst.
+final_aug_oct_2025,Aug 2025 - Oct 2025,existing parquet + embeddings,,,,"(165733, 384)","(165733, 15)",210,87447,0.5276,Final run with best grid-search parameters.
+generalization_nov_jan,Nov 2025 - Jan 2026,existing parquet + embeddings,,,,"(2000, 384)",,2,,0.07,Limited generalization/smoke-style test with 2000 embeddings.
