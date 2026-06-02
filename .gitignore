@@ -35,3 +35,5 @@ project_tree*.txt
 !README.md
 !requirements.txt
 !src/
+
+.idea/
