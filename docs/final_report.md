@@ -17,6 +17,26 @@ The main contributions are:
 - automatic macro-event deduplication using label similarity and temporal proximity;
 - grid-search hyperparameter optimization based on top-30 deduplicated candidate matching.
 
+### Source Code Repository
+
+The complete source code, documentation, evaluation scripts, hyperparameter optimization experiments, and reproducibility materials are available in the GitHub repository:
+
+[Source code repository](https://github.com/samijeddu/Technology-Event-Detection-from-Reddit-Discussions-PA026-Artificial-Intelligence-Project.)
+
+### Dataset Access
+
+The Reddit Pushshift dumps used by this project are not included in the repository because of their size.
+
+The original `.zst` Reddit submission dumps can be downloaded from:
+
+https://academictorrents.com/details/c5ba00048236b60f819dbf010e9034d24fc291fb
+
+After downloading the `.zst` files, users can run the extraction pipeline starting from the extraction modules described in the project documentation.
+
+### Similar Projects
+
+This project is related to unsupervised topic and event discovery systems that combine text embeddings, dimensionality reduction, clustering, and keyword-based interpretation. Similar approaches are used in BERTopic-style topic modeling, social-media event detection pipelines, and news/event monitoring systems that rank emerging topics by temporal burstiness. The main difference is that this project focuses specifically on Reddit technology discussions and combines semantic clustering with S4 temporal scoring, automatic deduplication, and pseudo-ground-truth evaluation against external technology events.
+
 ## 2. Methodology
 
 ### 2.1 Data Collection and Cleaning
@@ -130,6 +150,10 @@ Two candidates are considered duplicates when:
 - their `peak_date` values are within two days.
 
 Connected duplicate candidates are assigned an `auto_macro_event_id`. For each macro-event, the candidate with the highest S4 score is kept. Evaluation is then performed on the top-30 deduplicated event candidates.
+
+### 2.8 Implementation Summary
+
+The implementation is organized as a modular Python pipeline under `src/`. Extraction, cleaning, embedding generation, dimensionality reduction, clustering, cluster summarization, c-TF-IDF labeling, validation, and comparison/HPO code are separated into stage-specific modules. The main execution entry point is `main.py`, which selects a `RUN_MODE` and enables only the relevant stages for smoke testing, final evaluation, or generalization testing. Intermediate artifacts are stored under `data/`, while ranked candidates, evaluation files, HPO results, report figures, and generated tables are stored under `outputs/` and `docs/`.
 
 ## 3. Hyperparameter Optimization
 
@@ -406,6 +430,50 @@ Other available modes:
 RUN_MODE = "smoke_zst_feb_2026"
 RUN_MODE = "generalization_nov_jan"
 ```
+
+### A.1 Running Examples
+
+The main reproducible execution examples are:
+
+```powershell
+# Final Aug-Oct evaluation run
+python main.py
+```
+
+with:
+
+```python
+RUN_MODE = "final_aug_oct_2025"
+```
+
+```powershell
+# Raw dump smoke test on one downloaded month
+python main.py
+```
+
+with:
+
+```python
+RUN_MODE = "smoke_zst_feb_2026"
+```
+
+```powershell
+# Temporally separated Nov-Jan generalization run
+python main.py
+```
+
+with:
+
+```python
+RUN_MODE = "generalization_nov_jan"
+```
+
+Example generated visual outputs used in the report include:
+
+- [F1@30 vs trial](figures/f1_vs_trial.png)
+- [F1@30 vs number of clusters](figures/f1_vs_n_clusters.png)
+- [F1@30 vs noise ratio](figures/f1_vs_noise_ratio.png)
+- [cluster/noise/F1 scatter](figures/hpo_scatter_clusters_noise.png)
 
 ### B. Important Output Paths
 

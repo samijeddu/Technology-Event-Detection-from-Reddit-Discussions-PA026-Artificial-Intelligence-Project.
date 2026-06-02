@@ -6,6 +6,36 @@ This repository contains an unsupervised pipeline for detecting emerging technol
 
 The project is an event discovery pipeline, not a supervised classifier. Its goal is to surface candidate technology events from noisy social discussions and rank them for inspection.
 
+## Repository
+
+GitHub:
+[Source code repository](https://github.com/samijeddu/Technology-Event-Detection-from-Reddit-Discussions-PA026-Artificial-Intelligence-Project.)
+
+This repository contains:
+
+- Source code
+- Evaluation scripts
+- Hyperparameter optimization experiments
+- Documentation
+- Final report figures
+- Reproducibility instructions
+
+## Dataset Download
+
+The original Reddit Pushshift `.zst` dumps are not stored in this repository due to their size.
+
+They can be downloaded from:
+
+https://academictorrents.com/details/c5ba00048236b60f819dbf010e9034d24fc291fb
+
+After downloading the dumps, the extraction pipeline can be executed starting from:
+
+```text
+src/01_extraction/
+```
+
+The smoke-test mode can be executed on a single downloaded month to verify the full pipeline from raw dump extraction through event candidate generation.
+
 ## Pipeline Overview
 
 The pipeline supports both raw Reddit `.zst` dumps and existing parquet/embedding artifacts.
